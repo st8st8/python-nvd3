@@ -52,20 +52,36 @@
                     {% block pietooltip %}
                     {% endblock pietooltip %}
                 {% else %}
-                    chart.tooltip.contentGenerator(function(data) {
-                        var x = String(data.data.x);
-                        var y = String(data.data.y);
+<<<<<<< HEAD
+                    chart.tooltipContent(function(key, y, e, graph) {
+                        var x = String(graph.point.x);
+                        var y = String(graph.point.y);
+                        {{ chart.tooltip_condition_string }}
+                        tooltip_str = '<center><b>'+key+'</b></center>' + y + ' {{ chart.tooltip_separator|default('at', True) }} ' + x;
+=======
+                    chart.tooltip.contentGenerator(function(obj) {
+                        var x = String(obj.data.x);
+                        var y = String(obj.data.y);
 
-                        tooltip_str = '<div class="chart_tooltip"><center>' + y + '</center></div>';
+                        tooltip_str = '<div class="chart_tooltip"><center><b>'+obj.data.key+'</b> <span> ' + y + '</span> <i class="fa fa-chevron-right"></i> ' + x +'</center></div>';
+>>>>>>> upstream/nvd3-1.8
                         return tooltip_str;
                     });
                 {% endif %}
             {% else %}
-                chart.tooltip.contentGenerator(function(data) {
-                    var x = d3.time.format("{{ chart.charttooltip_dateformat }}")(new Date(parseInt(data.point.x)));
-                    var y = String(data.point.y);
+<<<<<<< HEAD
+                chart.tooltipContent(function(key, y, e, graph) {
+                    var x = d3.time.format("{{ chart.charttooltip_dateformat }}")(new Date(parseInt(graph.point.x)));
+                    var y = String(graph.point.y);
+                    {{ chart.tooltip_condition_string }}
+                    tooltip_str = '<center><b>'+key+'</b></center>' + y + ' {{ chart.tooltip_separator|default('on', True) }} ' + x;
+=======
+                chart.tooltip.contentGenerator(function(obj) {
+                    var x = d3.time.format("{{ chart.charttooltip_dateformat }}")(new Date(parseInt(obj.data.x)));
+                    var y = String(obj.data.y);
 
-                    tooltip_str = '<div class="chart_tooltip"><center>' + y + '</center></div>';
+                    tooltip_str = '<div class="chart_tooltip"><center><b>'+key+'</b> <span> ' + y + '</span> <i class="fa fa-chevron-right"></i> ' + x +'</center></div>';
+>>>>>>> upstream/nvd3-1.8
                     return tooltip_str;
                 });
             {% endif %}
