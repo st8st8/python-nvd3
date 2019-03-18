@@ -12,6 +12,10 @@
     {{super()}}
     {% endblock init %}
 
+    {% block rendering_opts %}
+    {{super()}}
+    {% endblock rendering_opts %}
+
     {% block axes %}
     {{super()}}
     {% endblock axes %}
@@ -42,6 +46,10 @@
     {% block inject %}
     {{ super() }}
     {% endblock inject %}
+
+    {% block extras %}
+    {{ super () }}
+    {% endblock extras %}
 
     {% block close %}
     {{ super() }}
